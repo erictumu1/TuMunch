@@ -7,7 +7,7 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-  <StoreContextProvider>
+  <StoreContextProvider basename="/TuMunch">
       <App />
   </StoreContextProvider>
     </BrowserRouter>
