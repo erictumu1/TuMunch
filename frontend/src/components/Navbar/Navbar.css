@@ -1,0 +1,45 @@
+.navbar {
+  padding: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.navbar button {
+  background: green;
+  font-size: 16px;
+  color: white;
+  border: 1px solid green;
+  padding: 10px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.navbar button:hover {
+  background-color: transparent;
+  color: black;
+}
+.navbar .active {
+  padding-bottom: 2px;
+  border-bottom: 2px solid green;
+}
+.navbar li {
+  cursor: pointer;
+  color: black;
+}
+.navbar-search-icon {
+  position: relative;
+}
+.navbar-search-icon .dot {
+  position: absolute;
+  min-width: 10px;
+  min-height: 10px;
+  background-color: green;
+  border-radius: 5px;
+  top: -8px;
+  right: -8px;
+}
