@@ -9,7 +9,9 @@ const Footer = () => {
             <div className='footer-content-left'>
                 <img src={assets.logoblack} alt="" />
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae laudantium voluptatum eum provident non error dolore adipisci, rerum id animi atque amet maiores placeat voluptates fugit fugiat esse minima. Aliquid.
+                "At Tumunch, we’re passionate about delivering fresh and delicious meals straight to your door. Our mission is to make your dining experience convenient and delightful, whether you're at home or on the go. Enjoy the taste of quality, one bite at a time."
+
+
                 </p>
              <div className="footer-social-icons">
                 <img src={assets.facebook_icon} alt="" />
