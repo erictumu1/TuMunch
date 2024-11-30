@@ -61,3 +61,8 @@
 .food-item-counter img {
   width: 30px;
 }
+.food-item-img-container button {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}

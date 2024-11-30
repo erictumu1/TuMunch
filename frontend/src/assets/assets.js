@@ -50,6 +50,7 @@ import add_icon_white from './add_icon_white.png'
 import app_store from './app_store.png'
 import bag_icon from './bag_icon.png'
 import cross_icon from './cross_icon.png'
+import delete_icon from './delete_icon.png'
 import facebook_icon from './facebook_icon.png'
 import linkedin_icon from './linkedin_icon.png'
 import logout_icon from './logout_icon.png'
@@ -80,7 +81,8 @@ export const assets = {
     profile_icon,
     logout_icon,
     bag_icon,
-    parcel_icon
+    parcel_icon,
+    delete_icon
 }
 
 export const menu_list = [

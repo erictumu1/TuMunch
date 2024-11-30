@@ -6,7 +6,7 @@ import StoreContextProvider from './context/StoreContext.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename="/TuMunch">
+  <BrowserRouter basename="/TuMunch/">
   <StoreContextProvider>
       <App />
   </StoreContextProvider>
