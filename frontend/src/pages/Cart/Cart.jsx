@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 import './Cart.css';
@@ -21,13 +23,22 @@ const Cart = () => {
   const isCartEmpty = getTotalCartAmount() === 0;
 
   const handlePromoSubmit = () => {
-  if (promoCode.trim().toLowerCase() === 'tumu') {
-    setDiscountApplied(true);
-  } else {
-    alert('Invalid promo code');
-    setDiscountApplied(false);
-  }
-};
+    if (promoCode.trim().toLowerCase() === 'tumu') {
+      setDiscountApplied(true);
+    } else {
+      toast.error('Invalid promo code!, Enter "Tumu" to receive your discount', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        className: 'custom-toast',
+      });
+      setDiscountApplied(false);
+    }
+  };
 
   return (
     <div className="cart">
@@ -136,6 +147,7 @@ const Cart = () => {
           <h2>Your cart is empty!</h2>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };
