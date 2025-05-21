@@ -67,7 +67,7 @@ const MyOrders = () => {
                   ? `${item.name} x ${item.quantity}`
                   : `${item.name} x ${item.quantity}, `
               ))}</p>
-              <p>${order.amount}.00</p>
+              <p>${order.amount.toFixed(2)}</p>
               <p>Items: {order.items.reduce((total, item) => total + item.quantity, 0)}</p>
               <p><span>&#x25cf;</span><b>{order.status}</b></p>
               <button onClick={() => navigate('/track-order', { state: { order } })}>
