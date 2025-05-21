@@ -47,13 +47,9 @@ const Verify = () => {
       }
     };
 
-  useEffect(() => {
-    if (success && orderId) {
-      verifyPayment();
-    } else {
-      navigate("/");
-    }
-  }, [success, orderId]);
+    useEffect(() => {
+        verifyPayment();
+    },[])
 
   return (
     <div className='verify' >
