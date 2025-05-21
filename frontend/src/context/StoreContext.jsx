@@ -58,7 +58,7 @@ const getTotalCartAmount = () => {
   const loadCartData = async (token) => {
     try {
       const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
-      const cartData = response.data.cartData || {};  // default to empty object if null/undefined
+      const cartData = response.data.cartData || {};
       setCartItems(cartData);
     } catch (error) {
       console.error("Error loading cart data:", error);
@@ -110,4 +110,4 @@ const [userName, setUserName] = useState("");
   );
 };
 
-export default StoreContextProvider;
+export default StoreContextProvider;  
