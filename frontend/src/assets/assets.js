@@ -62,6 +62,11 @@ import remove_icon_red from './remove_icon_red.png'
 import selector_icon from './selector_icon.png'
 import twitter_icon from './twitter_icon.png'
 
+import delivered from './delivered.png'
+import food_processing from './food_processing.png'
+import order_placed from './order_placed.png'
+import out_for_delivery from './out_for_delivery.png'
+
 export const assets = {
     logo,logoblack,
     basket_icon,
@@ -82,7 +87,11 @@ export const assets = {
     logout_icon,
     bag_icon,
     parcel_icon,
-    delete_icon
+    delete_icon,
+    order_placed,
+    food_processing,
+    out_for_delivery,
+    delivered
 }
 
 export const menu_list = [

@@ -1,4 +1,3 @@
-import React from 'react'
 import './Header.css'
 
 const Header = () => {
@@ -6,8 +5,11 @@ const Header = () => {
     <div className='header'>
         <div className='header-contents'>
             <h2>Order your favourite food here</h2>
-            <p>Choose from a diverse menu featuring a delectable array of dishes crafted with the finest ingredients and satisfy your cravings and elevate your dining experience, one delicious meal at a time.</p>
-            <button>View Menu</button>
+            <p>
+                Embark on a culinary journey with dishes crafted from the freshest, finest ingredients.  
+                Whether you crave bold flavors or comforting classics, our diverse menu will delight your senses.  
+                Enjoy exceptional food delivered with care, turning every meal into a celebration of taste and quality.
+            </p>
         </div>
     </div>
   )
