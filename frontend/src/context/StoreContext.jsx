@@ -5,9 +5,9 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
-  const url = "http://localhost:5000";
+  const url = "https://tu-munch-backend-c7eb3a2e2d69.herokuapp.com";
   const [token, setToken] = useState("");
-  const [loading, setLoading] = useState(true); // new loading state
+  const [loading, setLoading] = useState(true);
   const [food_list,setFoodList] = useState([]);
 
   const addToCart = async (itemId) => {
