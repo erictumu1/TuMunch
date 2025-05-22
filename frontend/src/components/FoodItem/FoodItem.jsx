@@ -12,25 +12,34 @@ const FoodItem = ({id, name, price, description, image}) => {
 
   const handleAddToCart = () => {
     if (!isLoggedIn) {
-        toast.warn("Sign in to add items to cart.", {
-          style: {
-            background: 'white',
-            color: 'red',
-          },
-        });
+      toast.warn("Sign in to add items to cart.", {
+        toastId: 'login-required-add',
+        style: {
+          background: 'white',
+          color: 'red',
+        },
+      });
       return;
     }
+  
     addToCart(id);
-    toast.success("Item added to cart!");
+    toast.success("Item added to cart!", {
+      toastId: 'add-to-cart',
+    });
   };
 
   const handleRemoveFromCart = () => {
     if (!isLoggedIn) {
-      toast.warn("Please login first to remove items from your cart.");
+      toast.warn("Please login first to remove items from your cart.", {
+        toastId: 'login-required-remove'
+      });
       return;
     }
+  
     removeFromCart(id);
-    toast.info("Item removed from cart.");
+    toast.info("Item removed from cart.", {
+      toastId: 'remove-from-cart',
+    });
   };
 
   return (
