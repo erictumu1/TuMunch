@@ -5,7 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
-  const url = "https://tu-munch-backend-c7eb3a2e2d69.herokuapp.com";
+  const url = "https://tumunch-backend.onrender.com";
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(true);
   const [food_list,setFoodList] = useState([]);
