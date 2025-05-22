@@ -7,7 +7,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 //placing user order for frontend
 const placeOrder = async (req,res) =>{
 
-    const frontend_url = "http://localhost:5173/TuMunch";
+    const frontend_url = process.env.FRONTEND_URL || "http://localhost:5173/TuMunch";
+
 
     try{
         const newOrder = new orderModel({
@@ -44,10 +45,9 @@ const placeOrder = async (req,res) =>{
         const session = await stripe.checkout.sessions.create({
             line_items:line_items,
             mode:'payment',
-            success_url:`${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
-            cancel_url:`${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
+            success_url:`${frontend_url}/#/verify?success=true&orderId=${newOrder._id}`,
+            cancel_url:`${frontend_url}/#/verify?success=false&orderId=${newOrder._id}`,
         })
-
         res.json({success:true,session_url:session.url})
     } catch(error){
         console.log(error);
@@ -105,5 +105,21 @@ const updateStatus = async (req,res) => {
     }
 }
 
-export { listOrders, placeOrder, updateStatus, userOrders, verifyOrder };
+//api for deleteing orders in atabase
+const deleteOrder = async (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const deletedOrder = await orderModel.findByIdAndDelete(orderId);
+        if (!deletedOrder) {
+            return res.status(404).json({ success: false, message: "Order not found" });
+        }
+        res.json({ success: true, message: "Order deleted successfully" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+};
+
+
+export { deleteOrder, listOrders, placeOrder, updateStatus, userOrders, verifyOrder };
 
