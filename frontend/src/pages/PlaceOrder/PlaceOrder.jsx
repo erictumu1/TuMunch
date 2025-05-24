@@ -35,11 +35,6 @@ const PlaceOrder = () => {
       }
     });
 
-    const subtotal = getTotalCartAmount();
-    const deliveryFee = subtotal === 0 ? 0 : 5;
-    const taxAmount = subtotal * 0.13;
-    const totalAmount = subtotal + taxAmount + deliveryFee;
-
     let orderData = {
       address: data,
       items: orderItems,
@@ -117,7 +112,7 @@ const PlaceOrder = () => {
             <hr />
             <div className="cart-total-details">
               <p>Total</p>
-              <p>${totalAmount.toFixed(2)}</p>
+              <p>${subtotal.toFixed(2)}</p>
             </div>
           </div>
           <button type='submit'>PROCEED TO PAYMENT</button>
