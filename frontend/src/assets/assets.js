@@ -60,6 +60,7 @@ import profile_icon from './profile_icon.png'
 import rating_starts from './rating_starts.png'
 import remove_icon_red from './remove_icon_red.png'
 import selector_icon from './selector_icon.png'
+import shopping_icon from './shopping_cart.png'
 import twitter_icon from './twitter_icon.png'
 
 import delivered from './delivered.png'
@@ -86,6 +87,7 @@ export const assets = {
     profile_icon,
     logout_icon,
     bag_icon,
+    shopping_icon,
     parcel_icon,
     delete_icon,
     order_placed,
