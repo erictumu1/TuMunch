@@ -27,7 +27,6 @@ const Home = ({ category, setCategory }) => {
       <ExploreMenu category={category} setCategory={setCategory} />
       <FoodDisplay category={category} />
       <AppDownload />
-      <div id="footer">{/* Your footer component should be rendered here */}</div>
     </div>
   );
 };

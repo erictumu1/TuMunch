@@ -6,6 +6,8 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const year = new Date().getFullYear();
+
   return (
     <div className='footer' id='footer'>
       <div className="footer-content">
@@ -43,10 +45,9 @@ const Footer = () => {
   Back to top
       </li>
       <p className='footer-copyright'>
-        Copyright 2024 @ <span>Tumunch</span>.com - All Rights Reserved.
+         &copy; {year} Created by <span className="footer-name" >Eric Tumu</span>. All Rights Reserved.
       </p>
     </div>
   )
 }
-
 export default Footer
