@@ -55,3 +55,9 @@
 .place-order .cart-total button {
   margin-top: 30px;
 }
+.discountapplied {
+  display: none;
+}
+.tumu-discount {
+  color: green;
+}

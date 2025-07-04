@@ -170,6 +170,9 @@
   color: red;
   border: red;
 }
+.Toastify__progress-bar--info.custom-progress-bar {
+  background-color: green !important; /* Green color for the progress bar */
+}
 @media (max-width: 750px) {
   .cart-bottom {
     flex-direction: column-reverse;

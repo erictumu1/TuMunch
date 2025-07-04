@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,22 +11,23 @@ const Cart = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [promoCode, setPromoCode] = useState('');
-  const [discountApplied, setDiscountApplied] = useState(false);
+  const [discountApplied, setDiscountApplied] = useState(localStorage.getItem("discountApplied") === 'true');
 
   const subtotal = getTotalCartAmount();
   const deliveryFee = 5;
   const discountAmount = discountApplied ? subtotal * 0.5 : 0;
+  localStorage.setItem("getdiscount", discountAmount);
   const taxAmount = (subtotal - discountAmount) * 0.13;
   const totalAmount = subtotal - discountAmount + taxAmount + deliveryFee;
-
 
   const isCartEmpty = getTotalCartAmount() === 0;
 
   const handlePromoSubmit = () => {
     if (promoCode.trim().toLowerCase() === 'tumu') {
-      setDiscountApplied(true);
+      setDiscountApplied(true);  
+      localStorage.setItem("discountApplied", 'true'); 
     } else {
-      toast.error('Invalid promo code!, Enter "Tumu" to receive your discount', {
+      toast.error('Invalid promo code! Enter "Tumu" to receive your discount', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -36,9 +37,26 @@ const Cart = () => {
         progress: undefined,
         className: 'custom-toast',
       });
-      setDiscountApplied(false);
     }
   };
+
+  useEffect(() => {
+    toast.info(
+      <span>
+        Enter <span style={{ color: 'green' }}>Tumu</span> to get a 50% discount!
+      </span>,
+      {
+        position: "top-center", 
+        hideProgressBar: false, 
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        progressClassName: 'custom-progress-bar', 
+        style: { marginTop: '-100px' }, 
+      }
+    );
+  }, []);
 
   return (
     <div className="cart">
@@ -71,7 +89,7 @@ const Cart = () => {
                   </div>
                   <hr />
                 </div>
-                );
+              );
             }
             return null;
           })}
@@ -94,7 +112,7 @@ const Cart = () => {
               {discountApplied && (
                 <>
                   <div className="cart-total-details">
-                    <p>Discount (Tumu)</p>
+                    <p>Discount (<span>Tumu</span>)</p>
                     <p>-${discountAmount.toFixed(2)}</p>
                   </div>
                   <hr />
@@ -117,29 +135,29 @@ const Cart = () => {
             </div>
             <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
           </div>
-              <div className="cart-promocode">
-                <div>
-                  <p>Have a promo code? <span>Enter it here.</span></p>
-                  <form
-                    className="cart-promocode-input"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      handlePromoSubmit();
-                    }}
-                  >
-                    <input
-                      type="text"
-                      placeholder="promo code"
-                      value={promoCode}
-                      onChange={(e) => setPromoCode(e.target.value)}
-                    />
-                    <button type="submit">Submit</button>
-                  </form>
-                  {discountApplied && (
-                    <p className="promo-success">Promo code <span>"Tumu"</span> applied! 50% discount granted.</p>
-                  )}
-                </div>
-              </div>
+          <div className="cart-promocode">
+            <div>
+              <p>Have a promo code? <span>Enter it here.</span></p>
+              <form
+                className="cart-promocode-input"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handlePromoSubmit();
+                }}
+              >
+                <input
+                  type="text"
+                  placeholder="promo code"
+                  value={promoCode}
+                  onChange={(e) => setPromoCode(e.target.value)}
+                />
+                <button type="submit">Submit</button>
+              </form>
+              {discountApplied && (
+                <p className="promo-success">Promo code <span>"Tumu"</span> applied! 50% discount granted.</p>
+              )}
+            </div>
+          </div>
         </div>
       )}
       {isCartEmpty && (

@@ -33,18 +33,23 @@ const PlaceOrder = () => {
         let itemInfo = { ...item, quantity: cartItems[item._id] };  // avoid mutating original item
         orderItems.push(itemInfo);
       }
-    });
+    }
+  );
 
     let orderData = {
       address: data,
       items: orderItems,
       amount: totalAmount,
+      deliveryFee: deliveryFee,
+      taxAmount: taxAmount,
+      discountAmount: localStorage.getItem("discountApplied") ? (localStorage.getItem("getdiscount") * 1) : 0
     };
 
     try {
       let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
       if (response.data.success) {
         const { session_url } = response.data;
+        localStorage.removeItem("discountApplied");
         console.log("Redirecting to Stripe:", session_url);
         window.location.replace(session_url);
       } else {
@@ -66,7 +71,8 @@ const PlaceOrder = () => {
     }
   }, [token, getTotalCartAmount, navigate]);
 
-  const subtotal = getTotalCartAmount();
+  const totalbefore = getTotalCartAmount();
+  const subtotal = localStorage.getItem("discountApplied") ? (getTotalCartAmount() - localStorage.getItem("getdiscount")) : getTotalCartAmount();
   const deliveryFee = subtotal === 0 ? 0 : 5;
   const taxAmount = subtotal * 0.13;
   const totalAmount = subtotal + taxAmount + deliveryFee;
@@ -97,7 +103,7 @@ const PlaceOrder = () => {
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>${subtotal.toFixed(2)}</p>
+              <p>${totalbefore.toFixed(2)}</p>
             </div>
             <hr />
             <div className="cart-total-details">
@@ -105,6 +111,13 @@ const PlaceOrder = () => {
               <p>${deliveryFee.toFixed(2)}</p>
             </div>
             <hr />
+            <div className={`${localStorage.getItem("discountApplied") ? "" : "discountapplied"}`}>
+            <div className={`cart-total-details`}>
+              <p>Discount(<span className='tumu-discount'>Tumu</span>)</p>
+              <p>-${(localStorage.getItem("getdiscount") * 1).toFixed(2)}</p>
+            </div>
+            <hr />
+            </div>
             <div className="cart-total-details">
               <p>Tax (13%)</p>
               <p>${taxAmount.toFixed(2)}</p>
@@ -112,7 +125,7 @@ const PlaceOrder = () => {
             <hr />
             <div className="cart-total-details">
               <p>Total</p>
-              <p>${subtotal.toFixed(2)}</p>
+              <p>${totalAmount.toFixed(2)}</p>
             </div>
           </div>
           <button type='submit'>PROCEED TO PAYMENT</button>
